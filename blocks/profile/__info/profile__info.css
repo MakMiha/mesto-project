@@ -4,6 +4,12 @@
   max-width: 350px;
 }
 
+@media (max-width: 768px) {
+  .profile__info {
+    max-width: 300px;
+  }
+}
+
 @media (max-width: 600px) {
   .profile__info {
     max-width: 282px;
