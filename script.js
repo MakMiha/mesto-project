@@ -105,11 +105,12 @@ addCards();
 
 // добавление карточки пользователем
 const buttonAddCard = document.querySelector('.popup__submit-button_add-card');
-function addUserCard() {
+function addUserCard(evt) {
   const title = document.querySelector('.popup__form-text_title');
   const link = document.querySelector('.popup__form-text_link');
   createCard(title.value, link.value);
-  deleteClassPopupAddCard();
+  evt.preventDefault();
+  clossePopup(popupAddCard);
 }
 buttonAddCard.addEventListener('click', addUserCard); 
 
@@ -126,11 +127,11 @@ popupSubname.value = Subname;
 
 const popupEditButton = document.querySelector('.popup__submit-button_edit-profile');
 
-popupEditButton.addEventListener('click', () => {
+popupEditButton.addEventListener('click', (evt) => {
     const profileName = document.querySelector('.profile__name');
     const profileSubname = document.querySelector('.profile__subname');
     profileName.textContent = popupName.value;
     profileSubname.textContent = popupSubname.value;
-
+    evt.preventDefault();
     clossePopup(popupEditProfile);
 });
