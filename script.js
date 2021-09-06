@@ -132,5 +132,5 @@ popupEditButton.addEventListener('click', () => {
     profileName.textContent = popupName.value;
     profileSubname.textContent = popupSubname.value;
 
-    deleteClassPopupEditProfile();
+    clossePopup(popupEditProfile);
 });
