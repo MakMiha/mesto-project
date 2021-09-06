@@ -106,8 +106,8 @@ addCards();
 // добавление карточки пользователем
 const buttonAddCard = document.querySelector('.popup__submit-button_add-card');
 function addUserCard() {
-  let title = document.querySelector('.popup__form-text_title');
-  let link = document.querySelector('.popup__form-text_link');
+  const title = document.querySelector('.popup__form-text_title');
+  const link = document.querySelector('.popup__form-text_link');
   createCard(title.value, link.value);
   deleteClassPopupAddCard();
 }
