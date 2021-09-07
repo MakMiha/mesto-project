@@ -5,6 +5,7 @@
   border: none;
   background-repeat: no-repeat;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .element__like:hover {
