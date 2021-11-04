@@ -18,6 +18,7 @@ function closePopup(popup) {
 };
 function escClosePopup(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popup);
+    const popupOpen = document.querySelector(".popup_opened");
+    closePopup(popupOpen);
   }
 };
