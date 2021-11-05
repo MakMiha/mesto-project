@@ -1,4 +1,4 @@
-export { addCards};
+export { addCards, addCard, createCard};
 import {
   initialCards,
   cardTemplate,
