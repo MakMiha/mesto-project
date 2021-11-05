@@ -19,6 +19,8 @@ export {
   formPopupEditProfile,
   profileName,
   profileSubname,
+  buttonAddCard,
+  buttonEditProfile,
 };
 
 //Переменные
@@ -62,10 +64,12 @@ const caption = document.querySelector(".popup__image-caption");
 const cardTemplate = document.querySelector('#card-template').content;
 
 const formAddCard = document.querySelector('form[name="add-card"]');
+const buttonAddCard = document.querySelector('.popup__submit-button_add-card');
 const title = document.querySelector('.popup__form-text_title');
 const link = document.querySelector('.popup__form-text_link');
 const popupName= document.querySelector('.popup__form-text_name');
 const popupSubname = document.querySelector('.popup__form-text_subname');
 const formPopupEditProfile = document.querySelector('form[name="user-info"]');
+const buttonEditProfile = document.querySelector('.popup__submit-button_edit-profile');
 const profileName = document.querySelector('.profile__name');
 const profileSubname = document.querySelector('.profile__subname');

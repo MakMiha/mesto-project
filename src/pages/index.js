@@ -18,16 +18,21 @@ import {
   formPopupEditProfile,
   profileName,
   profileSubname,
+  buttonAddCard,
+  buttonEditProfile,
 } from "../components/constants.js";
 
 //Слушатели событий
 cardOpen.addEventListener('click', () => {
   openPopup(popupAddCard);
+  buttonAddCard.setAttribute("disabled", true);
 });
 profileOpen.addEventListener('click', () => {
   openPopup(popupEditProfile);
   popupName.value = profileName.textContent;
   popupSubname.value = profileSubname.textContent;
+  buttonEditProfile.removeAttribute("disabled");
+  buttonEditProfile.classList.remove("popup__submit-button_inactive");
 });
 closePopupEditProfile.addEventListener('click', () => {
   closePopup(popupEditProfile);
@@ -45,10 +50,10 @@ document.querySelector('.popup__close-button_image').addEventListener('click', (
 
 enableValidation({
   formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  inputSelector: '.popup__form-text',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__form-text_type_error',
+  errorClass: 'error_active'
 }); 
 addCards();
