@@ -1,6 +1,6 @@
 import './index.css';
 
-import { popupProfile, addUserCard} from "../components/modals.js";
+import { handleProfileSubmit, addUserCard} from "../components/modals.js";
 import { enableValidation, } from "../components/validate.js";
 import { openPopup, closePopup, } from "../components/utils.js";
 import { addCards} from "../components/card.js";
@@ -9,9 +9,7 @@ import {
   popupAddCard,
   cardOpen,
   profileOpen,
-  closePopupEditProfile,
-  closePopupAddCard,
-  popupImage,
+  popups,
   formAddCard,
   popupName,
   popupSubname,
@@ -26,28 +24,29 @@ import {
 cardOpen.addEventListener('click', () => {
   openPopup(popupAddCard);
   buttonAddCard.setAttribute("disabled", true);
+  buttonEditProfile.classList.add("popup__submit-button_inactive");
 });
 profileOpen.addEventListener('click', () => {
   openPopup(popupEditProfile);
   popupName.value = profileName.textContent;
   popupSubname.value = profileSubname.textContent;
-  buttonEditProfile.removeAttribute("disabled");
-  buttonEditProfile.classList.remove("popup__submit-button_inactive");
+  buttonEditProfile.removeAttribute("disabled"); 
+  buttonEditProfile.classList.remove("popup__submit-button_inactive"); 
 });
-closePopupEditProfile.addEventListener('click', () => {
-  closePopup(popupEditProfile);
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup);
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+          closePopup(popup);
+        }
+    });
 });
-closePopupAddCard.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
+
 formAddCard.addEventListener('submit', addUserCard); 
 
-formPopupEditProfile.addEventListener('submit', popupProfile);
-//Закрытие изображения
-document.querySelector('.popup__close-button_image').addEventListener('click', () => {
-  closePopup(popupImage);
-});
-
+formPopupEditProfile.addEventListener('submit', handleProfileSubmit);
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__form-text',
