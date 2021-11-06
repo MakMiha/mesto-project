@@ -11,9 +11,9 @@ import {
   popupEditProfile
 } from "./constants.js";
 import { addCard, createCard} from "../components/card.js";
-export { popupProfile, addUserCard};
+
 //Редактирование профиля
-function popupProfile(evt) {
+function handleProfileSubmit(evt) {
   profileName.textContent = popupName.value;
   profileSubname.textContent = popupSubname.value;
   evt.preventDefault();
@@ -26,3 +26,5 @@ function addUserCard(evt) {
   closePopup(popupAddCard);
   formAddCard.reset();
 };
+
+export { handleProfileSubmit, addUserCard};

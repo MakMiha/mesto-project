@@ -1,4 +1,3 @@
-export { addCards, addCard, createCard};
 import {
   initialCards,
   cardTemplate,
@@ -47,3 +46,5 @@ function addCards() {
     addCard(createCard(title, link));
   }
 };
+
+export { addCards, addCard, createCard};

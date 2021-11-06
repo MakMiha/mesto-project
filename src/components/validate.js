@@ -1,14 +1,3 @@
-export {
-  showInputError,
-  hideInputError,
-  checkInputValidity,
-  hasInvalidInput,
-  toggleButtonState,
-  setEventListeners,
-  enableValidation,
-};
-
-
 //Валидация
 //показать сообщение об ошибке
 const showInputError = (formElement, inputElement, errorMessage, option) => {
@@ -71,4 +60,14 @@ const enableValidation = (option) => {
     });
     setEventListeners(formElement, option);
   });
+};
+
+export {
+  showInputError,
+  hideInputError,
+  checkInputValidity,
+  hasInvalidInput,
+  toggleButtonState,
+  setEventListeners,
+  enableValidation,
 };

@@ -1,24 +1,18 @@
-export { openPopup, closePopup, escClosePopup};
-
 //Открытие popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  window.addEventListener('keydown', escClosePopup);
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target !== evt.currentTarget) {
-      return;
-    }
-    closePopup(popup);
-  });
+  window.addEventListener('keydown', closeEscPopup);
 };
 //Закрытие popup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  window.removeEventListener('keydown', escClosePopup);
+  window.removeEventListener('keydown', closeEscPopup);
 };
-function escClosePopup(evt) {
+function closeEscPopup(evt) {
   if (evt.key === 'Escape') {
     const popupOpen = document.querySelector(".popup_opened");
     closePopup(popupOpen);
   }
 };
+
+export { openPopup, closePopup, closeEscPopup};
