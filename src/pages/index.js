@@ -24,7 +24,7 @@ import {
 cardOpen.addEventListener('click', () => {
   openPopup(popupAddCard);
   buttonAddCard.setAttribute("disabled", true);
-  buttonEditProfile.classList.add("popup__submit-button_inactive");
+  buttonAddCard.classList.add("popup__submit-button_inactive");
 });
 profileOpen.addEventListener('click', () => {
   openPopup(popupEditProfile);
