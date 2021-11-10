@@ -1,5 +1,4 @@
 import {
-  initialCards,
   cardTemplate,
   caption,
   imageFull,
@@ -7,16 +6,52 @@ import {
   popupImage,
 } from "../components/constants.js";
 import { openPopup } from "./utils.js";
-
+import { userId } from "../components/modals.js";
+import { addLike, deleteLike, deleteCard } from "../components/api";
 //Добавление карточки
-function createCard(title, link) {
+function createCard(data) {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const imageCard = cardElement.querySelector('.element__image');
+  const title = data.name;
+  const link = data.link;
+  const cardId = data._id;
+  const ownerId = data.owner._id;
+  const likes = data.likes;
   cardElement.querySelector('.element__title').textContent = title;
   imageCard.src = link;
   imageCard.alt = title;
-  cardElement.querySelector('.element__like').addEventListener('click', switchLike);
-  cardElement.querySelector('.element__delete').addEventListener('click', deleteCard);
+  const countLikes = cardElement.querySelector('.element__like-count');
+  countLikes.textContent = likes.length;
+  //Отображение посставленного лайка
+  if ( likes.some( like => like._id === userId ) ) {
+    cardElement.querySelector('.element__like').classList.add('element__like_active');
+  }
+  //Постановка и снятие лайка
+  cardElement.querySelector('.element__like').addEventListener('click', (evt) => {
+    evt.target.classList.toggle('element__like_active');
+    if (evt.target.classList.contains("element__like_active")) {
+      addLike(cardId)
+        .then((card) => {
+          countLikes.textContent = card.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      deleteLike(cardId)
+        .then((card) => {
+          countLikes.textContent = card.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
+  //Удаление карточки
+  if ( userId === ownerId ) {
+    cardElement.querySelector('.element__delete').classList.add('element__delete_visible');
+    cardElement.querySelector('.element__delete').addEventListener('click', () => removeCard(cardId, cardElement));
+  }
   //Открытие изображения
   imageCard.addEventListener('click', () => {
     openPopup(popupImage);
@@ -30,20 +65,21 @@ function createCard(title, link) {
 function addCard(card) {
   cardContainer.prepend(card);
 };
-//Функции постановки лайка
-function switchLike(evt){
-  evt.target.classList.toggle('element__like_active');
-};
+
 //Функция удаление карточки
-function deleteCard(evt) {
-  evt.target.closest('.element').remove(); 
+function removeCard(cardId, cardElement) {
+  deleteCard(cardId)
+    .then(() => {
+      cardElement.remove(); 
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
-function addCards() {
+function addCards(initialCards) {
   for (let i = 0; i < initialCards.length; i++) {
     const data = initialCards[i];
-    const title = data.name;
-    const link = data.link;
-    addCard(createCard(title, link));
+    addCard(createCard(data));
   }
 };
 
