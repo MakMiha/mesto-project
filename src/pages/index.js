@@ -66,18 +66,12 @@ enableValidation({
   errorClass: 'error_active'
 }); 
 
-getInitialCards()
-  .then((initialCards) => {
-    addCards(initialCards);
-  })
-  .catch((err) => { 
-    console.log(err);
-  });
-
-getInitialUser()
-  .then((user) => {
-    loadProfile(user);
-  })
-  .catch((err) => { 
-    console.log(err);
-  }); 
+const initialCards = getInitialCards();
+const userInfo = getInitialUser();
+Promise.all([initialCards, userInfo]).then((arr) => {
+  loadProfile(arr[1]);
+  addCards(arr[0]);
+})
+    .catch((err) => { 
+      console.log(err);
+    }); 

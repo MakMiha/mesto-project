@@ -28,11 +28,13 @@ function createCard(data) {
   }
   //Постановка и снятие лайка
   cardElement.querySelector('.element__like').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__like_active');
-    if (evt.target.classList.contains("element__like_active")) {
+    if (!evt.target.classList.contains("element__like_active")) {
       addLike(cardId)
         .then((card) => {
           countLikes.textContent = card.likes.length;
+        })
+        .then(() => {
+          evt.target.classList.toggle('element__like_active');
         })
         .catch((err) => {
           console.log(err);
@@ -41,6 +43,9 @@ function createCard(data) {
       deleteLike(cardId)
         .then((card) => {
           countLikes.textContent = card.likes.length;
+        })
+        .then(() => {
+          evt.target.classList.toggle('element__like_active');
         })
         .catch((err) => {
           console.log(err);

@@ -31,13 +31,15 @@ function loadProfile(user) {
 function handleProfileSubmit(evt) {
   renderLoading(true, buttonEditProfile)
   editProfile({name:popupName.value, about:popupSubname.value})
+    .then(() => {
+      profileName.textContent = popupName.value;
+      profileSubname.textContent = popupSubname.value;
+      closePopup(popupEditProfile);
+    })
     .finally(() => {
       renderLoading(false, buttonEditProfile);
     });
-  profileName.textContent = popupName.value;
-  profileSubname.textContent = popupSubname.value;
-  evt.preventDefault();
-  closePopup(popupEditProfile);
+  evt.preventDefault();;
 };
 
 //Добавление карточки пользователем
@@ -47,6 +49,10 @@ function addUserCard(evt) {
     .then((card) => {
       addCard(createCard(card));
     })
+    .then(() => {
+      closePopup(popupAddCard);
+      formAddCard.reset();
+    })
     .catch((err) => {
       console.log(err);
     })
@@ -54,19 +60,19 @@ function addUserCard(evt) {
       renderLoading(false, buttonAddCard);
     }); 
   evt.preventDefault();
-  closePopup(popupAddCard);
-  formAddCard.reset();
 };
 
 function handleAvatarSubmit(evt) {
   renderLoading(true, buttonEditAvatar)
   editAvatar(linkAvatar.value)
+    .then(() => {
+      profileAvatar.src = linkAvatar.value;
+      closePopup(popupAvatar);
+    })
     .finally(() => {
       renderLoading(false, buttonEditAvatar);
     });
-  profileAvatar.src = linkAvatar.value;
   evt.preventDefault();
-  closePopup(popupAvatar);
 };
 
 function renderLoading(isLoading, button){
