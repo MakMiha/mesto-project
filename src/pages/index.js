@@ -23,7 +23,11 @@ import {
   buttonEditAvatar,
   popupAvatar,
   formPopupEditAvatar,
+  cardContainer
 } from "../components/constants.js";
+// import Section from "../components/Section.js";
+
+
 
 //Слушатели событий
 cardOpen.addEventListener('click', () => {
@@ -70,6 +74,13 @@ const initialCards = getInitialCards();
 const userInfo = getInitialUser();
 Promise.all([initialCards, userInfo]).then((arr) => {
   loadProfile(arr[1]);
+  // const cardList = new Section({
+  //   items: arr[0],
+  //   renderer: (item) => {
+  //     const cardElement = createCard(item);
+  //     cardList.addItem(cardElement);
+  //   }
+  // }, cardContainer);
   addCards(arr[0]);
 })
     .catch((err) => { 
