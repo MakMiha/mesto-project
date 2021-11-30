@@ -1,10 +1,10 @@
 import './index.css';
 
 import { getInitialCards, getInitialUser } from "../components/api";
-import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit} from "../components/modals.js";
+import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit } from "../components/modals.js";
 import { enableValidation, } from "../components/validate.js";
 import { openPopup, closePopup, } from "../components/utils.js";
-import { addCards} from "../components/card.js";
+import { addCards } from "../components/card.js";
 import {
   popupEditProfile,
   popupAddCard,

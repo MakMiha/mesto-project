@@ -1,4 +1,8 @@
 //Валидация
+
+
+
+
 //показать сообщение об ошибке
 const showInputError = (formElement, inputElement, errorMessage, option) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
