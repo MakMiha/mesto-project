@@ -37,7 +37,7 @@ import Card from "../components/card.js";
 let userId = 1;
 const api = new Api(token, baseUrl);
 
-api.getInfoArray()
+api.getInfoAll()
   .then((data) => {
     const [initialUserInfo, initialCards] = data;
     userId = initialUserInfo._id;

@@ -29,7 +29,7 @@ export default class Api {
       }).then(this._checkResponse).then(res => console.log(res));
     }
 
-    getInfoArray() {
+    getInfoAll() {
       return Promise.all([this.getInitialUser(), this._getInitialCards()])
     }
     
