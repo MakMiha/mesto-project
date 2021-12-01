@@ -12,16 +12,25 @@ export default class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     };
 
-    getInitialCards = () => {
+    _getInitialCards = () => {
       return fetch(`${this.baseUrl}/cards`, {
-        headers:  this.token
-      }).then(this._checkResponse);
+        headers: {
+          authorization: this.token
+        }
+      }).then(this._checkResponse).then(res => console.log(res));
     } 
     
+
     getInitialUser = () => {
       return fetch(`${this.baseUrl}/users/me`, {
-        headers: this.token
-      }).then(this._checkResponse);
+        headers: {
+          authorization: this.token
+        }
+      }).then(this._checkResponse).then(res => console.log(res));
+    }
+
+    getInfoArray() {
+      return Promise.all([this.getInitialUser(), this._getInitialCards()])
     }
     
     editProfile = (profile) => {
@@ -87,12 +96,12 @@ export default class Api {
 
 
 
-const config = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
-  headers: {
-    authorization: '295298ff-2da3-4248-8148-e158f9c4a5df',
-    'Content-Type': 'application/json'
-  }
-}
+// const config = {
+//   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
+//   headers: {
+//     authorization: '295298ff-2da3-4248-8148-e158f9c4a5df',
+//     'Content-Type': 'application/json'
+//   }
+// }
 
 

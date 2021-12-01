@@ -1,5 +1,5 @@
 import './index.css';
-import Api from '../components/Api.js';
+import Api from '../components/api.js';
 //import { getInitialCards, getInitialUser } from "../components/api";
 import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit } from "../components/modals.js";
 import { enableValidation, } from "../components/validate.js";
@@ -30,6 +30,7 @@ import {
 // import Section from "../components/Section.js";
 
 const api = new Api(token, baseUrl);
+api.getInfoArray();
 
 //Слушатели событий
 cardOpen.addEventListener('click', () => {
@@ -72,19 +73,19 @@ enableValidation({
   errorClass: 'error_active'
 }); 
 
-const initialCards = getInitialCards();
-const userInfo = getInitialUser();
-Promise.all([initialCards, userInfo]).then((arr) => {
-  loadProfile(arr[1]);
-  // const cardList = new Section({
-  //   items: arr[0],
-  //   renderer: (item) => {
-  //     const cardElement = createCard(item);
-  //     cardList.addItem(cardElement);
-  //   }
-  // }, cardContainer);
-  addCards(arr[0]);
-})
-    .catch((err) => { 
-      console.log(err);
-    }); 
+// const initialCards = getInitialCards();
+// const userInfo = getInitialUser();
+// Promise.all([initialCards, userInfo]).then((arr) => {
+//   loadProfile(arr[1]);
+//   // const cardList = new Section({
+//   //   items: arr[0],
+//   //   renderer: (item) => {
+//   //     const cardElement = createCard(item);
+//   //     cardList.addItem(cardElement);
+//   //   }
+//   // }, cardContainer);
+//   addCards(arr[0]);
+// })
+//     .catch((err) => { 
+//       console.log(err);
+//     }); 
