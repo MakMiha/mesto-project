@@ -37,17 +37,20 @@ import Card from "../components/card.js";
 let userId = 1;
 const api = new Api(token, baseUrl);
 
+const cardList = new Section({
+  items: [],
+  renderer: (item) => {
+    createCard(item);
+  }
+}, cardContainer);
+
 api.getInfoAll()
   .then((data) => {
     const [initialUserInfo, initialCards] = data;
+    console.log(initialUserInfo);
+    console.log(initialCards);
     userId = initialUserInfo._id;
     loadProfile(initialUserInfo);
-    const cardList = new Section({
-      items: initialCards,
-      renderer: (item) => {
-        createCard(item);
-      }
-    }, cardContainer);
   })
   .catch((err) => {
     console.log(err);

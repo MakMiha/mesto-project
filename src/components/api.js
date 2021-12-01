@@ -12,25 +12,24 @@ export default class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     };
 
-    _getInitialCards = () => {
+    getInitialCards = () => {
       return fetch(`${this.baseUrl}/cards`, {
         headers: {
           authorization: this.token
         }
-      }).then(this._checkResponse).then(res => console.log(res));
+      }).then(this._checkResponse);
     } 
     
-
     getInitialUser = () => {
       return fetch(`${this.baseUrl}/users/me`, {
         headers: {
           authorization: this.token
         }
-      }).then(this._checkResponse).then(res => console.log(res));
+      }).then(this._checkResponse);
     }
 
     getInfoAll() {
-      return Promise.all([this.getInitialUser(), this._getInitialCards()])
+      return Promise.all([this.getInitialUser(), this.getInitialCards()])
     }
     
     editProfile = (profile) => {
