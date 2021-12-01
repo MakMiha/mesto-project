@@ -17,7 +17,7 @@ import {
   buttonEditAvatar
 } from "./constants.js";
 import { addCard, createCard } from "../components/card.js";
-import { editProfile, addNewCard, editAvatar } from "../components/api";
+//import { editProfile, addNewCard, editAvatar } from "../components/api";
 let userId = 1;
 //Редактирование профиля
 function loadProfile(user) {

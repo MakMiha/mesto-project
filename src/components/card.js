@@ -7,7 +7,7 @@ import {
 } from "../components/constants.js";
 import { openPopup } from "./utils.js";
 import { userId } from "../components/modals.js";
-import { addLike, deleteLike, deleteCard } from "../components/api";
+//import { addLike, deleteLike, deleteCard } from "../components/api";
 //Добавление карточки
 function createCard(data) {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);

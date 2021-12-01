@@ -1,6 +1,6 @@
 import './index.css';
-
-import { getInitialCards, getInitialUser } from "../components/api";
+import Api from '../components/Api.js';
+//import { getInitialCards, getInitialUser } from "../components/api";
 import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit } from "../components/modals.js";
 import { enableValidation, } from "../components/validate.js";
 import { openPopup, closePopup, } from "../components/utils.js";
@@ -23,11 +23,13 @@ import {
   buttonEditAvatar,
   popupAvatar,
   formPopupEditAvatar,
-  cardContainer
+  cardContainer,
+  token,
+  baseUrl
 } from "../components/constants.js";
 // import Section from "../components/Section.js";
 
-
+const api = new Api(token, baseUrl);
 
 //Слушатели событий
 cardOpen.addEventListener('click', () => {

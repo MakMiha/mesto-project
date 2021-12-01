@@ -1,59 +1,33 @@
 //Переменные
 
-const popupEditProfile = document.querySelector('.popup_edit-profile');
-const popupAddCard = document.querySelector('.popup_add-card');
-const popupAvatar = document.querySelector('.popup_edit-avatar');
-const cardOpen = document.querySelector('.profile__add-button');
-const profileOpen = document.querySelector('.profile__edit-button');
-const avatarOpen = document.querySelector('.profile__avatar-edit-button');
-const popups = document.querySelectorAll('.popup');
+export const popupEditProfile = document.querySelector('.popup_edit-profile');
+export const popupAddCard = document.querySelector('.popup_add-card');
+export const popupAvatar = document.querySelector('.popup_edit-avatar');
+export const cardOpen = document.querySelector('.profile__add-button');
+export const profileOpen = document.querySelector('.profile__edit-button');
+export const avatarOpen = document.querySelector('.profile__avatar-edit-button');
+export const popups = document.querySelectorAll('.popup');
 
-const cardContainer = document.querySelector('.elements__cards-list');
-const popupImage= document.querySelector('.popup_full-image');
-const imageFull = document.querySelector('.popup__image');
-const caption = document.querySelector('.popup__image-caption');
-const cardTemplate = document.querySelector('#card-template').content;
+export const cardContainer = document.querySelector('.elements__cards-list');
+export const popupImage= document.querySelector('.popup_full-image');
+export const imageFull = document.querySelector('.popup__image');
+export const caption = document.querySelector('.popup__image-caption');
+export const cardTemplate = document.querySelector('#card-template').content;
 
-const formAddCard = document.querySelector('form[name="add-card"]');
-const buttonAddCard = document.querySelector('.popup__submit-button_add-card');
-const title = document.querySelector('.popup__form-text_title');
-const link = document.querySelector('.popup__form-text_link');
-const linkAvatar = document.querySelector('.popup__form-text_link-avatar');
-const popupName= document.querySelector('.popup__form-text_name');
-const popupSubname = document.querySelector('.popup__form-text_subname');
-const formPopupEditProfile = document.querySelector('form[name="user-info"]');
-const buttonEditProfile = document.querySelector('.popup__submit-button_edit-profile');
-const buttonEditAvatar = document.querySelector('.popup__submit-button_edit-avatar');
-const formPopupEditAvatar = document.querySelector('form[name="user-avatar"]');
-const profileName = document.querySelector('.profile__name');
-const profileSubname = document.querySelector('.profile__subname');
-const profileAvatar = document.querySelector('.profile__avatar');
+export const formAddCard = document.querySelector('form[name="add-card"]');
+export const buttonAddCard = document.querySelector('.popup__submit-button_add-card');
+export const title = document.querySelector('.popup__form-text_title');
+export const link = document.querySelector('.popup__form-text_link');
+export const linkAvatar = document.querySelector('.popup__form-text_link-avatar');
+export const popupName= document.querySelector('.popup__form-text_name');
+export const popupSubname = document.querySelector('.popup__form-text_subname');
+export const formPopupEditProfile = document.querySelector('form[name="user-info"]');
+export const buttonEditProfile = document.querySelector('.popup__submit-button_edit-profile');
+export const buttonEditAvatar = document.querySelector('.popup__submit-button_edit-avatar');
+export const formPopupEditAvatar = document.querySelector('form[name="user-avatar"]');
+export const profileName = document.querySelector('.profile__name');
+export const profileSubname = document.querySelector('.profile__subname');
+export const profileAvatar = document.querySelector('.profile__avatar');
 
-export {
-  popupEditProfile,
-  popupAddCard,
-  cardOpen,
-  profileOpen,
-  popups,
-  cardContainer,
-  popupImage,
-  imageFull,
-  caption,
-  cardTemplate,
-  formAddCard,
-  title,
-  link,
-  popupName,
-  popupSubname,
-  formPopupEditProfile,
-  profileName,
-  profileSubname,
-  buttonAddCard,
-  buttonEditProfile,
-  popupAvatar,
-  avatarOpen,
-  buttonEditAvatar,
-  linkAvatar,
-  profileAvatar,
-  formPopupEditAvatar,
-};
+export const token = '295298ff-2da3-4248-8148-e158f9c4a5df';
+export const baseUrl = 'https://nomoreparties.co/v1/plus-cohort-3';
