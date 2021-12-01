@@ -30,7 +30,7 @@ import {
 // import Section from "../components/Section.js";
 
 const api = new Api(token, baseUrl);
-api.getInfoArray();
+api.getInfoAll();
 
 //Слушатели событий
 cardOpen.addEventListener('click', () => {
