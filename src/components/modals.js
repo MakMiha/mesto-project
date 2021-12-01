@@ -16,12 +16,8 @@ import {
   buttonAddCard,
   buttonEditAvatar
 } from "./constants.js";
-import { addCard, createCard } from "../components/card.js";
-//import { editProfile, addNewCard, editAvatar } from "../components/api";
-let userId = 1;
 //Редактирование профиля
 function loadProfile(user) {
-  userId = user._id;
   profileName.textContent = user.name;
   profileSubname.textContent = user.about;
   profileAvatar.src = user.avatar;
@@ -83,4 +79,4 @@ function renderLoading(isLoading, button){
   }
 };
 
-export { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit, userId};
+export { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit};
