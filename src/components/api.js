@@ -58,19 +58,23 @@ export default class Api {
     addLike = (cardId) => {
       return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
         method: "PUT",
-        headers: this.token
+        headers: {
+          authorization: this.token
+        }
       }).then(this._checkResponse);
     }
     
     deleteLike = (cardId) => {
-      return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+      return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
         method: "DELETE",
-        headers: this.token
+        headers: {
+          authorization: this.token
+        }
       }).then(this._checkResponse);
     }
     
     editAvatar = (newAvatar) => {
-      return fetch(`${config.baseUrl}/users/me/avatar`, {
+      return fetch(`${this.baseUrl}/users/me/avatar`, {
         method: "PATCH",
         headers: this.token,
         body: JSON.stringify({
@@ -80,7 +84,7 @@ export default class Api {
     }
     
     deleteCard = (cardId) => {
-      return fetch(`${config.baseUrl}/cards/${cardId}`, {
+      return fetch(`${this.baseUrl}/cards/${cardId}`, {
         method: "DELETE",
         headers: this.token
       }).then(this._checkResponse);

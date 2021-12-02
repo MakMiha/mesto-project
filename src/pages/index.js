@@ -37,12 +37,12 @@ import Card from "../components/card.js";
 let userId = 1;
 const api = new Api(token, baseUrl);
 
-const cardList = new Section({
-  items: [],
-  renderer: (item) => {
-    createCard(item);
-  }
-}, cardContainer);
+// const cardList = new Section({
+//   items: [],
+//   renderer: (item) => {
+//     cardList.addItem(createCard(item))
+//   }
+// }, cardContainer);
 
 api.getInfoAll()
   .then((data) => {
@@ -51,24 +51,32 @@ api.getInfoAll()
     console.log(initialCards);
     userId = initialUserInfo._id;
     loadProfile(initialUserInfo);
+    const cardList = new Section({
+      items: initialCards,
+      renderer: (item) => {
+        cardList.addItem(createCard(item))
+      }
+    }, cardContainer);
+    cardList.renderItems();
+
   })
   .catch((err) => {
     console.log(err);
   })
 
 //Открытие изображения
-const handleCardClick =  (card) => {
+const handleCardClick =  (title, link) => {
   openPopup(popupImage);
-  imageFull.src = card.link;
-  imageFull.alt = card.title;
-  caption.textContent = card.title;
+  imageFull.src = link;
+  imageFull.alt = title;
+  caption.textContent = title;
 };
 
 //Удаление карточки
 const handleDeleteClick = (card) => {
-  api.deleteCard(card._id)
+  api.deleteCard(card._cardId)
     .then(() => {
-      this.removeCard(); 
+      card.removeCard(); 
     })
     .catch((err) => {
       console.log(err);
@@ -77,12 +85,12 @@ const handleDeleteClick = (card) => {
 
 //Постановка лайка
 const handleAddLikeClick = (card) => {
-  api.addLike(card._id)
+  api.addLike(card._cardId)
     .then((data) => {
-      this.countLikes(data.likes);
+      card.countLikes(data.likes);
     })
     .then(() => {
-      this.likeToggle();
+      card.likeToggle();
     })
     .catch((err) => {
       console.log(err);
@@ -91,12 +99,12 @@ const handleAddLikeClick = (card) => {
 
 //Удаление лайка
 const handleDeleteLikeClick = (card) => {
-  api.deleteLike(card.getCardId())
+  api.deleteLike(card._cardId)
     .then((data) => {
-      this.countLikes(data.likes);
+      card.countLikes(data.likes);
     })
     .then(() => {
-      this.likeToggle();
+      card.likeToggle();
     })
     .catch((err) => {
       console.log(err);
@@ -111,7 +119,8 @@ const createCard = (data) => {
     handleDeleteLikeClick,
     handleDeleteClick,
     userId,
-    cardTemplate
+    '#card-template',
+    // cardTemplate
   );
   return card.createCard();
 };

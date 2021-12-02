@@ -1,7 +1,7 @@
 export default class Card {
   constructor(data, handleCardClick, handleAddLikeClick, handleDeleteLikeClick, 
     handleDeleteClick, userId, cardTemplate)  {
-    this._name = data.name;
+    this._title = data.name;
     this._link = data.link;
     this._cardId = data._id;
     this._ownerId = data.owner._id;
@@ -13,7 +13,6 @@ export default class Card {
     this._userId = userId;
     this._cardTemplate = cardTemplate;
   }
-
 
 //Удаление карточки
   removeCard() {
@@ -27,10 +26,10 @@ export default class Card {
   }
 //Добавление карточки
   createCard() {
-    this._cardElement = this._cardTemplate();
+    this._cardElement = document.querySelector(this._cardTemplate).content.querySelector('.element').cloneNode(true);
     this._imageCard = this._cardElement.querySelector('.element__image');
-    this._imageCard.src =  this._link;
-    this._imageCard.alt =  this._title;
+    this._imageCard.src = this._link;
+    this._imageCard.alt = this._title;
     this._cardElement.querySelector('.element__title').textContent = this._title;
 
     this._countLikes = this._cardElement.querySelector('.element__like-count');
@@ -56,7 +55,10 @@ export default class Card {
         this._handleDeleteLikeClick(this)
       }
     });
-
+    //Открытие изображения
+    this._imageCard.addEventListener("click", () =>
+      this._handleCardClick(this._title, this._link)
+    );
     return this._cardElement;
   }
 }
