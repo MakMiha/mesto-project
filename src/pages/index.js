@@ -49,14 +49,15 @@ api.getInfoAll()
   .then((data) => {
     const [initialUserInfo, initialCards] = data;
     userId = initialUserInfo._id;
-    console.log(initialUserInfo);
-    console.log(initialCards);
+
     const user = new User({
       name: '.profile__name',
       about: '.profile__subname',
       avatar: '.profile__avatar',
     });
+
     user.setUserInfo(initialUserInfo);
+    
     const cardList = new Section({
       items: initialCards,
       renderer: (item) => {

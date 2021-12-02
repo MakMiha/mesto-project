@@ -15,4 +15,4 @@ function closeEscPopup(evt) {
   }
 };
 
-export { openPopup, closePopup, closeEscPopup};
+export { openPopup, closePopup, closeEscPopup };
