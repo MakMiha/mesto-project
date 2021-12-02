@@ -29,14 +29,11 @@ import {
   imageFull,
   popupImage,
   caption,
-  cardContainer
+  cardContainer,
+  userId
 } from "../components/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/card.js";
-
-let userId = 1;
-
-
 
 const api = new Api(token, baseUrl);
 
