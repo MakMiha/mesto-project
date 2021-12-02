@@ -36,11 +36,7 @@ import Card from "../components/card.js";
 
 let userId = 1;
 
-const user = new User({
-  name: '.profile__name',
-  about: '.profile__subname',
-  avatar: '.profile__avatar',
-});
+
 
 const api = new Api(token, baseUrl);
 
@@ -56,9 +52,12 @@ api.getInfoAll()
     const [initialUserInfo, initialCards] = data;
     console.log(initialUserInfo);
     console.log(initialCards);
-    //userId = initialUserInfo._id;
+    const user = new User({
+      name: '.profile__name',
+      about: '.profile__subname',
+      avatar: '.profile__avatar',
+    });
     user.setUserInfo(initialUserInfo);
-   // loadProfile(initialUserInfo);
     const cardList = new Section({
       items: initialCards,
       renderer: (item) => {
