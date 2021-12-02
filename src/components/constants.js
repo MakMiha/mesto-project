@@ -30,4 +30,3 @@ export const profileAvatar = document.querySelector('.profile__avatar');
 
 export const token = '295298ff-2da3-4248-8148-e158f9c4a5df';
 export const baseUrl = 'https://nomoreparties.co/v1/plus-cohort-3';
-export const userId = "6d7ec3b2ca8eadb3d65cdf85";

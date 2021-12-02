@@ -29,11 +29,12 @@ import {
   imageFull,
   popupImage,
   caption,
-  cardContainer,
-  userId
+  cardContainer
 } from "../components/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/card.js";
+
+let userId = 1;
 
 const api = new Api(token, baseUrl);
 
@@ -47,6 +48,7 @@ const api = new Api(token, baseUrl);
 api.getInfoAll()
   .then((data) => {
     const [initialUserInfo, initialCards] = data;
+    userId = initialUserInfo._id;
     console.log(initialUserInfo);
     console.log(initialCards);
     const user = new User({
