@@ -1,9 +1,11 @@
 import './index.css';
 import Api from '../components/api.js';
+import  User  from "../components/User.js";
 //import { getInitialCards, getInitialUser } from "../components/api";
 import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit} from "../components/modals.js";
 import { enableValidation, } from "../components/validate.js";
 import { openPopup, closePopup, } from "../components/utils.js";
+
 import {
   popupEditProfile,
   popupAddCard,
@@ -22,10 +24,8 @@ import {
   buttonEditAvatar,
   popupAvatar,
   formPopupEditAvatar,
-  cardTemplate,
   token,
   baseUrl,
-
   imageFull,
   popupImage,
   caption,
@@ -35,6 +35,13 @@ import Section from "../components/Section.js";
 import Card from "../components/card.js";
 
 let userId = 1;
+
+const user = new User({
+  name: '.profile__name',
+  about: '.profile__subname',
+  avatar: '.profile__avatar',
+});
+
 const api = new Api(token, baseUrl);
 
 // const cardList = new Section({
@@ -49,8 +56,9 @@ api.getInfoAll()
     const [initialUserInfo, initialCards] = data;
     console.log(initialUserInfo);
     console.log(initialCards);
-    userId = initialUserInfo._id;
-    loadProfile(initialUserInfo);
+    //userId = initialUserInfo._id;
+    user.setUserInfo(initialUserInfo);
+   // loadProfile(initialUserInfo);
     const cardList = new Section({
       items: initialCards,
       renderer: (item) => {

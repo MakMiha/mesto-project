@@ -91,20 +91,3 @@ export default class Api {
     }
 }
 
-
-
-
-
-
-
-
-
-// const config = {
-//   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-3',
-//   headers: {
-//     authorization: '295298ff-2da3-4248-8148-e158f9c4a5df',
-//     'Content-Type': 'application/json'
-//   }
-// }
-
-

@@ -1,5 +1,4 @@
 //Переменные
-
 export const popupEditProfile = document.querySelector('.popup_edit-profile');
 export const popupAddCard = document.querySelector('.popup_add-card');
 export const popupAvatar = document.querySelector('.popup_edit-avatar');
