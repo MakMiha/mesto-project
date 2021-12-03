@@ -1,9 +1,8 @@
 import './index.css';
 import Api from '../components/api.js';
 import  User  from "../components/User.js";
-//import { getInitialCards, getInitialUser } from "../components/api";
+import  Validator  from "../components/Validator.js";
 import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit} from "../components/modals.js";
-import { enableValidation, } from "../components/validate.js";
 import { openPopup, closePopup, } from "../components/utils.js";
 
 import {
@@ -29,7 +28,8 @@ import {
   imageFull,
   popupImage,
   caption,
-  cardContainer
+  cardContainer,
+  validationOption
 } from "../components/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/card.js";
@@ -164,11 +164,12 @@ popups.forEach((popup) => {
 formAddCard.addEventListener('submit', addUserCard); 
 formPopupEditAvatar.addEventListener('submit', handleAvatarSubmit);
 formPopupEditProfile.addEventListener('submit', handleProfileSubmit);
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-text',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_inactive',
-  inputErrorClass: 'popup__form-text_type_error',
-  errorClass: 'error_active'
-}); 
+
+//Validation
+const editFormValidator = new Validator(validationOption, formPopupEditProfile);
+const AvatarValidator = new Validator(validationOption, formPopupEditAvatar)
+const cardFormValidator = new Validator(validationOption, formAddCard);
+
+editFormValidator.enableValidation();
+AvatarValidator.enableValidation();
+cardFormValidator.enableValidation();

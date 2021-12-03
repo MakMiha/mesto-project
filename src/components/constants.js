@@ -30,3 +30,11 @@ export const profileAvatar = document.querySelector('.profile__avatar');
 
 export const token = '295298ff-2da3-4248-8148-e158f9c4a5df';
 export const baseUrl = 'https://nomoreparties.co/v1/plus-cohort-3';
+export const validationOption ={
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-text',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__form-text_type_error',
+  errorClass: 'error_active'
+}; 
