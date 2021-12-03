@@ -2,37 +2,40 @@ import './index.css';
 import Api from '../components/api.js';
 import  User  from "../components/User.js";
 import  Validator  from "../components/Validator.js";
-import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit} from "../components/modals.js";
-import { openPopup, closePopup, } from "../components/utils.js";
+// import { loadProfile, handleProfileSubmit, addUserCard, handleAvatarSubmit} from "../components/modals.js";
+// import { openPopup, closePopup, } from "../components/utils.js";
 
 import {
-  popupEditProfile,
-  popupAddCard,
+  // popupEditProfile,
+  // popupAddCard,
   cardOpen,
   profileOpen,
-  popups,
+  // popups,
   formAddCard,
   popupName,
   popupSubname,
   formPopupEditProfile,
   profileName,
   profileSubname,
-  buttonAddCard,
-  buttonEditProfile,
+  // buttonAddCard,
+  // buttonEditProfile,
   avatarOpen,
-  buttonEditAvatar,
-  popupAvatar,
+  // buttonEditAvatar,
+  // popupAvatar,
   formPopupEditAvatar,
   token,
   baseUrl,
-  imageFull,
-  popupImage,
-  caption,
+  // imageFull,
+  // popupImage,
+  // caption,
   cardContainer,
   validationOption
 } from "../components/constants.js";
 import Section from "../components/Section.js";
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 let userId = 1;
 
@@ -71,13 +74,6 @@ api.getInfoAll()
     console.log(err);
   })
 
-//Открытие изображения
-const handleCardClick =  (title, link) => {
-  openPopup(popupImage);
-  imageFull.src = link;
-  imageFull.alt = title;
-  caption.textContent = title;
-};
 
 //Удаление карточки
 const handleDeleteClick = (card) => {
@@ -133,37 +129,80 @@ const createCard = (data) => {
 };
 
 //Слушатели событий
+
+const profileChangeHandler = (user) => {
+  api.editProfile(user)
+    .then((data) => {
+      user.setUserInfo(data);
+      popupEditProfile.closePopup();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupEditProfile.renderLoading(false);
+    })  
+}
+
+const newCardHandler = (card) => {
+  api.addNewCard(card)
+    .then((data) => {
+      cardList.addItem(createCard(data));
+      popupAddCard.closePopup();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAddCard.renderLoading(false);
+    })
+}
+
+const avatarChangeHandler = (avatar) => {
+  api.editAvatar(avatar)
+    .then((data) => {
+      user.setUserInfo(data);
+      popupAvatar.closePopup();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAvatar.renderLoading(false);
+    })
+}
+
+const popupAddCard = new PopupWithForm ('.popup_add-card', newCardHandler);
+const popupEditProfile = new PopupWithForm('.popup_edit-profile', profileChangeHandler);
+const popupAvatar = new PopupWithForm('.popup_edit-avatar', avatarChangeHandler);
+//Открытие изображения
+const popupWithImage = new PopupWithImage('.popup_full-image');
+const handleCardClick =  (title, link) => {
+  popupWithImage.openPopup(title, link);
+};
+
 cardOpen.addEventListener('click', () => {
-  openPopup(popupAddCard);
-  buttonAddCard.setAttribute('disabled', true);
-  buttonAddCard.classList.add('popup__submit-button_inactive');
+  popupAddCard.openPopup();
+  // buttonAddCard.setAttribute('disabled', true);
+  // buttonAddCard.classList.add('popup__submit-button_inactive');
 });
 profileOpen.addEventListener('click', () => {
-  openPopup(popupEditProfile);
+  popupEditProfile.openPopup();
   popupName.value = profileName.textContent;
   popupSubname.value = profileSubname.textContent;
-  buttonEditProfile.removeAttribute('disabled'); 
-  buttonEditProfile.classList.remove('popup__submit-button_inactive'); 
+  // buttonEditProfile.removeAttribute('disabled'); 
+  // buttonEditProfile.classList.remove('popup__submit-button_inactive'); 
 });
 avatarOpen.addEventListener("click", () => {
-  openPopup(popupAvatar);
-  buttonEditAvatar.setAttribute('disabled', true);
-  buttonEditAvatar.classList.add('popup__submit-button_inactive');
-});
-popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup);
-        }
-        if (evt.target.classList.contains('popup__close-button')) {
-          closePopup(popup);
-        }
-    });
+  popupAvatar.openPopup();
+  // buttonEditAvatar.setAttribute('disabled', true);
+  // buttonEditAvatar.classList.add('popup__submit-button_inactive');
 });
 
-formAddCard.addEventListener('submit', addUserCard); 
-formPopupEditAvatar.addEventListener('submit', handleAvatarSubmit);
-formPopupEditProfile.addEventListener('submit', handleProfileSubmit);
+popupAddCard.setEventListeners();
+popupEditProfile.setEventListeners();
+popupAvatar.setEventListeners();
+popupWithImage.setEventListeners();
 
 //Validation
 const editFormValidator = new Validator(validationOption, formPopupEditProfile);
