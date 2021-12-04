@@ -1,4 +1,5 @@
 import { closePopup } from "./utils.js";
+import Api from '../components/api.js';
 import {
   profileName,
   profileSubname,

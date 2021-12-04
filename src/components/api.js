@@ -15,7 +15,8 @@ export default class Api {
     getInitialCards = () => {
       return fetch(`${this.baseUrl}/cards`, {
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         }
       }).then(this._checkResponse);
     } 
@@ -23,7 +24,8 @@ export default class Api {
     getInitialUser = () => {
       return fetch(`${this.baseUrl}/users/me`, {
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         }
       }).then(this._checkResponse);
     }
@@ -36,7 +38,8 @@ export default class Api {
       return fetch(`${this.baseUrl}/users/me`, {
         method: "PATCH",
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: profile.name,
@@ -47,13 +50,16 @@ export default class Api {
     }
     
     addNewCard = (card) => {
+      console.log('card link: ', card.link);
+      console.log('card title: ', card.title);
       return fetch(`${this.baseUrl}/cards`, {
         method: "POST",
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: card.name,
+          name: card.title,
           link: card.link
         }),
       }).then(this._checkResponse);
@@ -63,7 +69,8 @@ export default class Api {
       return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
         method: "PUT",
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         }
       }).then(this._checkResponse);
     }
@@ -81,10 +88,11 @@ export default class Api {
       return fetch(`${this.baseUrl}/users/me/avatar`, {
         method: "PATCH",
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          avatar: newAvatar
+          avatar: newAvatar.link_avatar
         }),
       }).then(this._checkResponse);
     }
@@ -93,7 +101,8 @@ export default class Api {
       return fetch(`${this.baseUrl}/cards/${cardId}`, {
         method: "DELETE",
         headers: {
-          authorization: this.token
+          authorization: this.token,
+          "Content-Type": "application/json",
         }
       }).then(this._checkResponse);
     }

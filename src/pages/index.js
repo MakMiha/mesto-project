@@ -41,12 +41,12 @@ let userId = 1;
 
 const api = new Api(token, baseUrl);
 
-// const cardList = new Section({
-//   items: [],
-//   renderer: (item) => {
-//     cardList.addItem(createCard(item))
-//   }
-// }, cardContainer);
+const cardList = new Section({
+  items: [],
+  renderer: (item) => {
+    cardList.addItem(createCard(item))
+  }
+}, cardContainer);
 
 const user = new User({
   name: '.profile__name',
@@ -77,6 +77,7 @@ api.getInfoAll()
 
 //Удаление карточки
 const handleDeleteClick = (card) => {
+
   api.deleteCard(card._cardId)
     .then(() => {
       card.removeCard(); 
@@ -149,6 +150,7 @@ const profileChangeHandler = (userinfo) => {
 const newCardHandler = (card) => {
   api.addNewCard(card)
     .then((data) => {
+     // debugger;
       cardList.addItem(createCard(data));
       popupAddCard.closePopup();
     })
@@ -162,6 +164,7 @@ const newCardHandler = (card) => {
 
 //Редактирование аватара
 const avatarChangeHandler = (avatar) => {
+  //debugger;
   api.editAvatar(avatar)
     .then((data) => {
       user.setUserInfo(data);
