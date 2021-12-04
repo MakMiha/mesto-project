@@ -35,7 +35,9 @@ export default class Api {
     editProfile = (profile) => {
       return fetch(`${this.baseUrl}/users/me`, {
         method: "PATCH",
-        headers: this.token,
+        headers: {
+          authorization: this.token
+        },
         body: JSON.stringify({
           name: profile.name,
           about: profile.about,
@@ -47,7 +49,9 @@ export default class Api {
     addNewCard = (card) => {
       return fetch(`${this.baseUrl}/cards`, {
         method: "POST",
-        headers: this.token,
+        headers: {
+          authorization: this.token
+        },
         body: JSON.stringify({
           name: card.name,
           link: card.link
@@ -76,7 +80,9 @@ export default class Api {
     editAvatar = (newAvatar) => {
       return fetch(`${this.baseUrl}/users/me/avatar`, {
         method: "PATCH",
-        headers: this.token,
+        headers: {
+          authorization: this.token
+        },
         body: JSON.stringify({
           avatar: newAvatar
         }),
@@ -86,7 +92,9 @@ export default class Api {
     deleteCard = (cardId) => {
       return fetch(`${this.baseUrl}/cards/${cardId}`, {
         method: "DELETE",
-        headers: this.token
+        headers: {
+          authorization: this.token
+        }
       }).then(this._checkResponse);
     }
 }

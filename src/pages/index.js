@@ -48,16 +48,16 @@ const api = new Api(token, baseUrl);
 //   }
 // }, cardContainer);
 
+const user = new User({
+  name: '.profile__name',
+  about: '.profile__subname',
+  avatar: '.profile__avatar',
+});
+
 api.getInfoAll()
   .then((data) => {
     const [initialUserInfo, initialCards] = data;
     userId = initialUserInfo._id;
-
-    const user = new User({
-      name: '.profile__name',
-      about: '.profile__subname',
-      avatar: '.profile__avatar',
-    });
 
     user.setUserInfo(initialUserInfo);
     
@@ -129,9 +129,10 @@ const createCard = (data) => {
 };
 
 //Слушатели событий
-
-const profileChangeHandler = (user) => {
-  api.editProfile(user)
+//Редактирование профиля
+const profileChangeHandler = (userinfo) => {
+  console.log(userinfo);
+  api.editProfile({name: userinfo.name, about: userinfo.subname})
     .then((data) => {
       user.setUserInfo(data);
       popupEditProfile.closePopup();
@@ -144,6 +145,7 @@ const profileChangeHandler = (user) => {
     })  
 }
 
+//Добавление карточки 
 const newCardHandler = (card) => {
   api.addNewCard(card)
     .then((data) => {
@@ -158,6 +160,7 @@ const newCardHandler = (card) => {
     })
 }
 
+//Редактирование аватара
 const avatarChangeHandler = (avatar) => {
   api.editAvatar(avatar)
     .then((data) => {
