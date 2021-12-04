@@ -77,7 +77,6 @@ api.getInfoAll()
 
 //Удаление карточки
 const handleDeleteClick = (card) => {
-
   api.deleteCard(card._cardId)
     .then(() => {
       card.removeCard(); 
@@ -132,7 +131,6 @@ const createCard = (data) => {
 //Слушатели событий
 //Редактирование профиля
 const profileChangeHandler = (userinfo) => {
-  console.log(userinfo);
   api.editProfile({name: userinfo.name, about: userinfo.subname})
     .then((data) => {
       user.setUserInfo(data);

@@ -45,7 +45,7 @@ export default class Card {
     //Удаление карточки
     if ( this._userId === this._ownerId ) {
       this._deleteButton.classList.add('element__delete_visible');
-      this._deleteButton.addEventListener('click', () => this._handleDeleteClick() );
+      this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this) );
     }
     //Постановка и снятие лайка
     this._cardElement.querySelector('.element__like').addEventListener('click', (evt) => {
