@@ -1,4 +1,4 @@
-import { profileName, profileSubname, profileAvatar} from './constants.js';
+import { profileName, profileSubname, profileAvatar } from "./constants.js";
 
 export default class User {
   constructor() {
@@ -9,8 +9,8 @@ export default class User {
 
   getUserInfo(fetchRequest) {
     fetchRequest()
-      .then(res => res)
-      .catch((err) => console.err(err))
+      .then((res) => res)
+      .catch((err) => console.err(err));
   }
 
   setUserAvatar(data) {
