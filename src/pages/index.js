@@ -176,15 +176,30 @@ const handleCardClick = (title, link) => {
   popupWithImage.openPopup(title, link);
 };
 
+
+//Validation
+const editFormValidator = new FormValidator(validationOption, formPopupEditProfile);
+const avatarValidator = new FormValidator(validationOption, formPopupEditAvatar);
+const cardFormValidator = new FormValidator(validationOption, formAddCard);
+
+editFormValidator.enableValidation();
+avatarValidator.enableValidation();
+cardFormValidator.enableValidation();
+
+
+
 cardOpen.addEventListener("click", () => {
+  cardFormValidator.setInitialState();
   popupAddCard.openPopup();
 });
 profileOpen.addEventListener("click", () => {
+  editFormValidator.setInitialState();
   popupEditProfile.openPopup();
   popupName.value = profileName.textContent;
   popupSubname.value = profileSubname.textContent;
 });
 avatarOpen.addEventListener("click", () => {
+  avatarValidator.setInitialState();
   popupAvatar.openPopup();
 });
 
@@ -193,11 +208,4 @@ popupEditProfile.setEventListeners();
 popupAvatar.setEventListeners();
 popupWithImage.setEventListeners();
 
-//Validation
-const editFormValidator = new FormValidator(validationOption, formPopupEditProfile);
-const AvatarValidator = new FormValidator(validationOption, formPopupEditAvatar);
-const cardFormValidator = new FormValidator(validationOption, formAddCard);
 
-editFormValidator.enableValidation();
-AvatarValidator.enableValidation();
-cardFormValidator.enableValidation();
