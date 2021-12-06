@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor({name, about, avatar}) {
+  constructor({name, about, avatar, _id}) {
     this._name = document.querySelector(name);
     this._about = document.querySelector(about);
     this._avatar = document.querySelector(avatar);

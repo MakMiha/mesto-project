@@ -30,7 +30,7 @@ const api = new Api(token, baseUrl);
 
 const cardList = new Section(
   {
-    items: [],
+    items: {},
     renderer: (item) => {
       cardList.addItem(createCard(item));
     },
@@ -50,16 +50,8 @@ api
     const [initialUserInfo, initialCards] = data;
     userId = initialUserInfo._id;
     user.setUserInfo(initialUserInfo);
-    const cardList = new Section(
-      {
-        items: initialCards,
-        renderer: (item) => {
-          cardList.addItem(createCard(item));
-        },
-      },
-      cardContainer
-    );
-    cardList.renderItems();
+    cardList.items = initialCards;
+    cardList.renderItems(initialCards);
   })
   .catch((err) => {
     console.log(err);
