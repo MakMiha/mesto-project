@@ -1,10 +1,8 @@
-import { profileName, profileSubname, profileAvatar } from "./constants.js";
-
-export default class User {
-  constructor() {
-    this._name = profileName;
-    this._about = profileSubname;
-    this._avatar = profileAvatar;
+export default class UserInfo {
+  constructor({name, about, avatar}) {
+    this._name = document.querySelector(name);
+    this._about = document.querySelector(about);
+    this._avatar = document.querySelector(avatar);
   }
 
   getUserInfo(fetchRequest) {

@@ -1,7 +1,7 @@
 import "./index.css";
 import Api from "../components/Api.js";
-import User from "../components/User.js";
-import Validator from "../components/Validator.js";
+import UserInfo from "../components/UserInfo.js";
+import FormValidator from "../components/FormValidator.js";
 
 import {
   cardOpen,
@@ -18,7 +18,7 @@ import {
   baseUrl,
   cardContainer,
   validationOption,
-} from "../components/constants.js";
+} from "../utils/constants.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -38,7 +38,7 @@ const cardList = new Section(
   cardContainer
 );
 
-const user = new User({
+const user = new UserInfo({
   name: ".profile__name",
   about: ".profile__subname",
   avatar: ".profile__avatar",
@@ -202,9 +202,9 @@ popupAvatar.setEventListeners();
 popupWithImage.setEventListeners();
 
 //Validation
-const editFormValidator = new Validator(validationOption, formPopupEditProfile);
-const AvatarValidator = new Validator(validationOption, formPopupEditAvatar);
-const cardFormValidator = new Validator(validationOption, formAddCard);
+const editFormValidator = new FormValidator(validationOption, formPopupEditProfile);
+const AvatarValidator = new FormValidator(validationOption, formPopupEditAvatar);
+const cardFormValidator = new FormValidator(validationOption, formAddCard);
 
 editFormValidator.enableValidation();
 AvatarValidator.enableValidation();
