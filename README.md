@@ -1,5 +1,9 @@
 # Проект: Место
 
+| co-author      | co-author |
+| -------------- | ------------ |
+| [Kirill Shipilov](https://github.com/SKirill-develop) | Mikhail Makarov    |
+
 ### Обзор
 
 * Описание

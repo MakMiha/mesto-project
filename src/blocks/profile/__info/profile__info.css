@@ -1,4 +1,20 @@
-.profile__info {
+.profile__info{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  row-gap: 16px;
+  column-gap: 18px;
+  margin-left: 30px;
+  align-items: center;
+}
+@media screen and (max-width: 768px){
+  .profile__info{
+    margin: 30px 0 34px;
+    grid-template-columns: 1fr auto 1fr;
+    row-gap: 8px;
+  }
+}
+
+/* .profile__info {
   display: flex;
   flex-wrap: wrap;
   max-width: 350px;
@@ -15,4 +31,4 @@
     max-width: 282px;
     justify-content: center;
   }
-}
+} */
